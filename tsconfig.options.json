@@ -1,0 +1,30 @@
+{
+	"compilerOptions": {
+		"composite": true,
+		"module": "Preserve",
+		"jsx": "preserve",
+		"moduleResolution": "Bundler",
+		"allowJs": true,
+		"allowSyntheticDefaultImports": true,
+		"forceConsistentCasingInFileNames": true,
+		"isolatedModules": true,
+		"declarationMap": true,
+		"target": "es2022",
+		"lib": ["esnext", "DOM", "DOM.Iterable"],
+		"emitDeclarationOnly": true,
+		"noEmitOnError": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitOverride": true,
+		"noImplicitReturns": true,
+		"noUnusedLocals": true,
+		"noUncheckedIndexedAccess": true,
+		"pretty": true,
+		"removeComments": false,
+		"skipLibCheck": true,
+		"sourceMap": false,
+		"strict": true,
+		"strictNullChecks": true,
+		"verbatimModuleSyntax": true,
+		"allowImportingTsExtensions": true
+	}
+}

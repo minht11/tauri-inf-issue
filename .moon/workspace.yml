@@ -1,0 +1,17 @@
+# https://moonrepo.dev/docs/config/workspace
+$schema: 'https://moonrepo.dev/schemas/workspace.json'
+
+projects:
+  sources:
+    frontend: 'apps/frontend'
+    tauri: 'apps/tauri'
+
+vcs:
+  provider: 'gitlab'
+
+constraints:
+  enforceProjectTypeRelationships: false
+
+generator:
+  templates:
+    - 'apps/site/templates'

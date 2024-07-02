@@ -1,0 +1,21 @@
+# https://moonrepo.dev/docs/config/tasks
+$schema: "https://moonrepo.dev/schemas/tasks.json"
+
+implicitInputs:
+  - "package.json"
+  - "/package.json"
+
+fileGroups:
+  configs:
+    - "*.{js,ts,cjs,json}"
+
+  sources:
+    - "src/**/*"
+    - "types/**/*"
+
+  assets:
+    - "public/**/*"
+    - "assets/**/*"
+    - "images/**/*"
+    - "static/**/*"
+    - "**/*.{css}"

@@ -1,0 +1,16 @@
+node_modules/
+.pnpm-store/
+.cargo/
+
+.moon/cache/
+.moon/docker/
+
+.DS_Store
+
+**/vite.config.ts.timestamp-*
+**/dist/
+.cache
+
+**/.env
+
+.generated/

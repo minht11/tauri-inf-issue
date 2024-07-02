@@ -1,0 +1,35 @@
+$schema: "https://moonrepo.dev/schemas/project.json"
+
+type: "application"
+language: "rust"
+
+dependsOn:
+  - "frontend"
+
+fileGroups:
+  sources:
+    - "src/**/*"
+    - "icons/**/*"
+    - "capabilities/**/*"
+    - "tauri.conf.json"
+    - "Cargo.toml"
+    - "Cargo.lock"
+    - "rust-toolchain.toml"
+
+tasks:
+  dev:
+    command: "cargo tauri dev"
+    local: true
+
+  build:
+    command: "cargo tauri build"
+    local: true
+
+  build-windows-cross:
+    extends: "build"
+    args: "--runner cargo-xwin --target x86_64-pc-windows-msvc"
+    local: true
+
+  tauri:
+    command: "cargo tauri"
+    local: true

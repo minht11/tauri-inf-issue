@@ -1,0 +1,17 @@
+{
+  "name": "tauri-dialog-issue",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "type": "module",
+  "private": true,
+  "packageManager": "pnpm@9.1.3",
+  "engines": {
+    "node": "20.11.1"
+  },
+  "devDependencies": {
+    "@moonrepo/cli": "1.26.6",
+    "typescript": "^5.4.5"
+  }
+}

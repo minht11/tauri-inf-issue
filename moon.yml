@@ -1,0 +1,132 @@
+$schema: 'https://moonrepo.dev/schemas/project.json'
+
+language: 'typescript'
+
+workspace:
+  inheritedTasks:
+    # No need to inherit for top-level tasks
+    include: []
+
+tasks:
+  # TODO. Once biome supports more vue/astro features remove prettier
+  format-prettier:
+    command:
+      - 'prettier'
+      - '--ignore-path'
+      - '@in(0)'
+      - '--check'
+      - '.'
+    inputs:
+      - '/.prettierignore'
+      - '/prettier.config.*'
+      - '@globs(sources)'
+      - '@globs(configs)'
+      - '**/*.{md,mdx}'
+    args:
+      - '--cache'
+      - '--cache-location'
+      - '.cache/.prettiercache'
+    options:
+      affectedFiles: true
+
+  format-prettier-fix:
+    extends: 'format-prettier'
+    args: '--write'
+    local: true
+
+  format-biome:
+    command:
+      - 'biome'
+      - 'format'
+    args:
+      - '.'
+    options:
+      # Biome is so fast, cache is not needed
+      cache: false
+
+  format-biome-fix:
+    extends: 'format-biome'
+    args: '--write'
+    local: true
+
+  format:
+    deps:
+      - '~:format-prettier'
+      - '~:format-biome'
+    options:
+      runDepsInParallel: true
+
+  format-fix:
+    deps:
+      - '~:format-biome-fix'
+      - '~:format-prettier-fix'
+    local: true
+    options:
+      runDepsInParallel: true
+
+  lint-biome:
+    command:
+      - 'biome'
+      - 'lint'
+    args:
+      - '.'
+    options:
+      # Biome is so fast, cache is not needed
+      cache: false
+
+  lint-biome-fix:
+    extends: 'lint-biome'
+    args: '--apply'
+    local: true
+
+  lint-eslint:
+    env:
+      NODE_OPTIONS: '--max-old-space-size=4096'
+    command:
+      - 'eslint'
+    args:
+      - '.'
+      - '--cache'
+      - '--cache-location'
+      - '.cache/.eslintcache'
+    inputs:
+      - 'apps/src/*.{js,ts,cjs,vue,astro}'
+      - 'apps/scripts/**/*.{js,ts,cjs,vue,astro}'
+      - 'apps/tests/**/*.{js,ts,cjs,vue,astro}'
+      - 'apps/types/**/*.{js,ts,cjs,vue,astro}'
+      - 'packages/**/*.{js,ts,cjs,vue,astro}'
+      - '*.config.*'
+    options:
+      affectedFiles: true
+
+  lint-eslint-fix:
+    extends: 'lint-eslint'
+    args: '--fix'
+    local: true
+
+  lint:
+    deps:
+      - '~:lint-biome'
+      - '~:lint-eslint'
+    options:
+      runDepsInParallel: true
+
+  lint-fix:
+    deps:
+      - '~:lint-biome-fix'
+      - '~:lint-eslint-fix'
+    local: true
+
+  fix:
+    deps:
+      - '~:format-fix'
+      - '~:lint-fix'
+    local: true
+    options:
+      runDepsInParallel: false
+
+  check:
+    deps:
+      - '~:format'
+      - '~:lint'
+    local: true

@@ -1,0 +1,23 @@
+$schema: "https://moonrepo.dev/schemas/toolchain.json"
+
+node:
+  version: "20.11.1"
+  packageManager: "pnpm"
+  pnpm:
+    version: "9.1.3"
+  dependencyVersionFormat: "workspace"
+  addEnginesConstraint: true
+  dedupeOnLockfileChange: true
+  syncProjectWorkspaceDependencies: true
+
+typescript:
+  createMissingConfig: false
+  routeOutDirToCache: true
+  syncProjectReferences: true
+
+rust:
+  version: "1.79.0"
+  syncToolchainConfig: true
+  targets: ["x86_64-pc-windows-msvc"]
+  bins: ["cargo-watch", tauri-cli@^2.0.0-beta, "cargo-xwin"]
+  components: ["rustfmt", "rust-analyzer"]

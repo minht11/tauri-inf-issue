@@ -1,0 +1,9 @@
+{
+  "editor.formatOnSave": true,
+  "npm.packageManager": "pnpm",
+  "eslint.useESLintClass": true,
+  // VSCode assumes that .moon/tasks are ansible tasks.
+  // We should reenable this when we have a better solution.
+  "yaml.validate": false,
+  "typescript.tsdk": "node_modules/typescript/lib"
+}
